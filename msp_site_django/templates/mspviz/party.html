@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<head>
+
+</head>
+
+<body>
+	{% if party %}
+		{{party.partyName}}
+		{% if partyMSPs %}
+			<ul>
+			{% for msp in partyMSPs %}
+				<li><a href="/mspviz/msp/{{msp.mspID}}">{{msp.mspName}}</a></li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	{% endif %}
+</body>

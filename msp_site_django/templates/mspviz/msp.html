@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<head>
+
+</head>
+
+<body>
+	{% if msp %}
+		{{msp.mspName}}, <a href="/mspviz/party/{{msp.mspParty.id}}">{{msp.mspParty.partyName}}</a>
+		<img src="{{ msp.mspImg }}">
+	{% endif %}
+	<a href="/mspviz/listmsps">Back to all msps</a>
+</body>

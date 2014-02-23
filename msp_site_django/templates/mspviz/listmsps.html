@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<head>
+
+</head>
+
+<body>
+	{% if all_msps %}
+		<ul>
+			{% for msp in all_msps %}
+				<li>
+					<a href="/mspviz/msp/{{msp.mspID}}">{{msp.mspName}}</a>, {{msp.mspID}}, 
+					<a href="/mspviz/party/{{msp.mspParty.id}}">{{msp.mspParty.partyName}}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+</body>
