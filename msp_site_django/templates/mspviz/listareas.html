@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<head>
+
+</head>
+
+<body>
+	{% if districts %}
+		<ul>
+			{% for district in districts %}
+				<li>
+					<a href="/mspviz/area/{{district.id}}">{{district.districtName}}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+</body>

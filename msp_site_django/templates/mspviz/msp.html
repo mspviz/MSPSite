@@ -6,7 +6,7 @@
 
 <body>
 	{% if msp %}
-		{{msp.mspName}}, <a href="/mspviz/party/{{msp.mspParty.id}}">{{msp.mspParty.partyName}}</a>
+		{{msp.mspName}}, <a href="/mspviz/party/{{msp.mspParty.id}}">{{msp.mspParty.partyName}}</a>, <a href="/mspviz/area/{{msp.mspDistrict.id}}">{{msp.mspDistrict.districtName}}</a>
 		<img src="{{ msp.mspImg }}">
 	{% endif %}
 	<a href="/mspviz/listmsps">Back to all msps</a>

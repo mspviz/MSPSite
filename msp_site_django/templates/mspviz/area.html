@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<head>
+
+</head>
+
+<body>
+	{% if district %}
+		{{district.districtName}}
+		{% if districtMSPs %}
+			<ul>
+			{% for msp in districtMSPs %}
+				<li><a href="/mspviz/msp/{{msp.mspID}}">{{msp.mspName}}</a>, {{msp.mspParty.partyName}}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	{% endif %}
+</body>

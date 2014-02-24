@@ -5,4 +5,6 @@ urlpatterns = patterns('',
 	url(r'^$',views.index,name='index'),
 	url(r'^listmsps/',views.listmsps,name='listmsps'),
 	url(r'^msp/(?P<mspID>\w+)/$', views.msp, name = 'msp'),
-	url(r'^party/(?P<partyID>\w+)/$',views.party,name = 'party'))
+	url(r'^party/(?P<partyID>\w+)/$',views.party,name = 'party'),
+	url(r'^area/(?P<areaID>\w+)/$',views.area,name='area'),
+	url(r'^listareas/',views.listareas,name='listareas'),)
