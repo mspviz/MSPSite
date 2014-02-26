@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <title>{% block title %}mspviz{% endblock %}</title>
+</head>
+
+<body>
+	<div id="wrapper">
+		<div id="header">
+	        {% block header %}
+	        <h1 id="claim">mspviz - watch your msp's actions</h1>
+	        {% endblock %}
+	    </div>
+	    
+	    <div id="navigation">
+	        {% block navigation %}
+	        <ul>
+	            <li><a href="/mspviz/">Home</a></li>
+	            <li><a href="/mspviz/listmsps/">MSPs</a></li>
+	            <li><a href="/mspviz/listareas/">Areas</a></li>
+	        </ul>
+	        {% endblock %}
+	    </div>
+	
+	    <div id="content">
+	        {% block content %}{% endblock %}
+	    </div>
+	</div>
+</body>
+</html>

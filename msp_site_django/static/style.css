@@ -1,0 +1,15 @@
+body{
+	background-color:#E6E3E8;
+	font-family:verdana, sans-serif;
+	font-size:10pt;
+	color:#464049;
+}
+
+#wrapper{
+	background-color:#fff;
+	margin:1% 5%;
+	padding:2% 5%;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}

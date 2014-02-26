@@ -1,10 +1,6 @@
-<!DOCTYPE html>
+{% extends "mspviz/base.html" %}
 
-<head>
-
-</head>
-
-<body>
+{% block content %}
 	{% if all_msps %}
 		<ul>
 			{% for msp in all_msps %}
@@ -15,4 +11,4 @@
 			{% endfor %}
 		</ul>
 	{% endif %}
-</body>
+{% endblock %}

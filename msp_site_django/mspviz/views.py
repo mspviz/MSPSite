@@ -8,7 +8,7 @@ def index(request):
 
 	context = RequestContext(request)
 	context_dict = {'bmessage': "I am a message"}
-	return render_to_response('mspviz/index.html', context_dict, context)
+	return render_to_response('mspviz/base.html', context_dict, context)
 
 def listmsps(request):
 	context = RequestContext(request)

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
+{% extends "mspviz/base.html" %}
 
-<head>
-
-</head>
-
-<body>
+{% block content %}
 	{% if district %}
 		{{district.districtName}}
 		{% if districtMSPs %}
@@ -15,4 +11,4 @@
 			</ul>
 		{% endif %}
 	{% endif %}
-</body>
+{% endblock %}
