@@ -1,32 +1,107 @@
 {% load staticfiles %}
 <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
-    <title>{% block title %}mspviz{% endblock %}</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+    <title>{% block title %}{{title}}{% endblock %}</title>
+    
+    <meta name="description" content="{{desc}}">
+    <meta name="viewport" content="width=device-width">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap-theme.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	
+	<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
 
 <body>
-	<div id="wrapper">
-		<div id="header">
-	        {% block header %}
-	        <h1 id="claim">mspviz - watch your msp's actions</h1>
-	        {% endblock %}
-	    </div>
-	    
-	    <div id="navigation">
-	        {% block navigation %}
-	        <ul>
-	            <li><a href="/mspviz/">Home</a></li>
-	            <li><a href="/mspviz/listmsps/">MSPs</a></li>
-	            <li><a href="/mspviz/listareas/">Areas</a></li>
-	        </ul>
-	        {% endblock %}
-	    </div>
+<!--[if lt IE 7]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p><![endif]-->
 	
-	    <div id="content">
-	        {% block content %}{% endblock %}
-	    </div>
-	</div>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'index' %}">{{title}}</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            {% for navid, navelem in navigation_main.items %}
+            	<li {% if activesite.id == navid %}  class="active" {% endif %}><a href="{% url navid %}">{{navelem.title}}</a></li>
+            {% endfor %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li class="dropdown-header">{{contact_name}}</li>
+              <li class="divider"></li>
+              <li><a href="mailto:{{contact_email}}">{{contact_email}}</a></li>
+              <!--
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+                -->
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+    
+    
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>{{activesite.title}}</h1>
+        <p>{{activesite.desc}}</p>
+      </div>
+    </div>
+    
+    
+    <div class="container">
+     
+      <!-- Example row of columns -->
+      {% block content %}
+      <div class="row">
+      	{% for navid, navelem in navigation_main.items %}
+      	 {% if navid != 'index' %}
+	      	<div class="col-lg-4">
+	          <h2>{{navelem.title}}</h2>
+	          <p>{{navelem.desc}}</p>
+	          <p><a class="btn btn-default" href="{% url navid %}">View details &raquo;</a></p>
+	        </div>
+	      {% endif %}
+        {% endfor %}
+      </div>
+	  {% endblock %}
+      
+      <hr>
+      <footer>
+        <!--  <p><a class="contactinfo btn btn-primary btn-lg">Contact &raquo;</a></p>-->
+        <p>&copy; {{contact_name}}</p>
+      </footer>
+    </div> 
+    <!-- /container -->   
+	
+	
+	
+	<script src="{% static 'js/vendor/jquery-1.11.0.min.js' %}"></script>
+	<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/vendor/d3.min.js' %}"></script>
+	<script src="{% static 'js/plugins.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

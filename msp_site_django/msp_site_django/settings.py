@@ -6,11 +6,12 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Simon Rogers', 'Simon.Rogers@glasgow.ac.uk'),
+    ('Daniel Boland', 'daniel@dcs.gla.ac.uk'),
+    ('Beatrix Vad', 'beatrix.vad@campus.lmu.de')
 )
 
 #Setup some dynamic paths
-
 SETTINGS_DIR = os.path.dirname(__file__)
 PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
 PROJECT_PATH = os.path.abspath(PROJECT_PATH)
@@ -102,6 +103,7 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
+
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

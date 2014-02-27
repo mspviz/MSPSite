@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 class Party(models.Model):
 	partyName = models.CharField(max_length=128,unique=True)
 	def __unicode__(self):
@@ -18,4 +19,6 @@ class MSP(models.Model):
 
 	def __unicode__(self):
 		return self.mspName
+
+
 

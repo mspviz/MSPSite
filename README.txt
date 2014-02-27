@@ -15,4 +15,12 @@ I've started creating the models. Haven't done anything about importing the data
 
 
 
+Frontend Libraries:
+-------------------
 
+Using HTML5 Boilerplate (http://html5boilerplate.com/) with:
+ - Twitter Bootstrap
+ - Modernizr
+ - Respond.js
+ 
+ D3 (http://d3js.org/) for data visualisation

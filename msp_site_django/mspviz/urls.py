@@ -7,4 +7,5 @@ urlpatterns = patterns('',
 	url(r'^msp/(?P<mspID>\w+)/$', views.msp, name = 'msp'),
 	url(r'^party/(?P<partyID>\w+)/$',views.party,name = 'party'),
 	url(r'^area/(?P<areaID>\w+)/$',views.area,name='area'),
+	url(r'^listparties/',views.listparties,name='listparties'),
 	url(r'^listareas/',views.listareas,name='listareas'),)
