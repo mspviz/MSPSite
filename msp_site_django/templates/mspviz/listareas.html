@@ -11,7 +11,7 @@
 	}
 	#map-scotland path:hover{
 		cursor:pointer;
-		fill: #999;
+		fill: #59B459;
 	}
 	
 </style>
@@ -36,12 +36,13 @@
 	{% endif %}
 	
 	
-	<script type="text/javascript">
+	<script type="text/javascript">	
+	
 	<!--
 	var fileuri = '{% static 'data/geo/scotconstmin.geojson' %}';
 	
 	var width = 900;
-    var height = width;
+    var height = Math.round(width*1.1);
 
 	var svg = d3.select("#mapcontainer").append("svg")
 		.attr("id", 'map-scotland')
@@ -52,7 +53,7 @@
 	    .center([0, 57.7])
 	    .rotate([4, 0])
 	    .parallels([50, 60])
-	    .scale(width*8)
+	    .scale(width*10)
 	    .translate([width / 2, height / 2]);
 	
 	var path = d3.geo.path()
@@ -63,6 +64,7 @@
 		  	.data(scot['features'])
 		  	.enter().append("path")
 		      .attr("title", function(d){ return d.properties.NAME;})
+		      .attr("class", function(d){ return d.properties.NAME;})
 		      .attr("d", path);
 	});
 	
