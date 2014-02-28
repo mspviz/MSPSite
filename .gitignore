@@ -1,2 +1,8 @@
 *.pyc
 *.sublime-workspace
+.project
+.settings
+.classpath
+.metadata
+.pydevproject
+/README.txt

@@ -14,11 +14,15 @@
     <meta name="description" content="{{desc}}">
     <meta name="viewport" content="width=device-width">
     
+    <link rel="shortcut icon" href="{% static 'media/img/favicon.ico' %}" />
+    
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap-theme.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	{% block addstyles %}{% endblock %}
 	
-	<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+	<script src="{% static 'js/vendor/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+	<script src="{% static 'js/vendor/d3.min.js' %}"></script>
 </head>
 
 <body>
@@ -32,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'index' %}">{{title}}</a>
+          <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'media/img/logo-80.png' %}" width="50" title="mspviz"/> mspviz</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -100,8 +104,8 @@
 	
 	<script src="{% static 'js/vendor/jquery-1.11.0.min.js' %}"></script>
 	<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
-	<script src="{% static 'js/vendor/d3.min.js' %}"></script>
 	<script src="{% static 'js/plugins.js' %}"></script>
 	<script src="{% static 'js/main.js' %}"></script>
+	
 </body>
 </html>

@@ -42,3 +42,16 @@ a {
 a:hover {
 	color: #468C46;
 }
+
+.navbar-brand{
+	padding-left:70px;
+}
+
+.navbar-brand img{
+	position:absolute;
+	margin:-7px 0 0 -55px;
+}
+
+hr {
+	border-color:#C9B5E2;
+}

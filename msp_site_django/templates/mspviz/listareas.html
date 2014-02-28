@@ -1,6 +1,26 @@
 {% extends "mspviz/base.html" %}
+{% load staticfiles %}
+
+
+{% block addstyles %}
+<style type="text/css">
+
+	#map-scotland path{
+		fill: #bbb;
+	}
+	#map-scotland path:hover{
+		cursor:pointer;
+		fill: #999;
+	}
+	
+</style>
+{% endblock %}
+
 
 {% block content %}
+
+	<div id="mapcontainer" style="float:right;"></div>
+
 	{% if districts %}
 		<ul>
 			{% for district in districts %}
@@ -10,4 +30,38 @@
 			{% endfor %}
 		</ul>
 	{% endif %}
+	
+	
+	<script type="text/javascript">
+	<!--
+	var fileuri = '{% static 'data/geo/osod_sco_outline.geojson' %}';
+	
+	var width = 900;
+    var height = width;
+
+	var svg = d3.select("#mapcontainer").append("svg")
+		.attr("id", 'map-scotland')
+	    .attr("width", width)
+	    .attr("height", height);
+	
+	var projection = d3.geo.albers()
+	    .center([0, 57.7])
+	    .rotate([4, 0])
+	    .parallels([50, 60])
+	    .scale(width*8)
+	    .translate([width / 2, height / 2]);
+	
+	var path = d3.geo.path()
+    	.projection(projection);
+	
+	d3.json(fileuri, function(error, scot) {
+		  svg.append("path")
+		      .datum(scot)
+		      .attr("d", path);
+	});
+	
+	
+	//-->
+	</script>
+	
 {% endblock %}

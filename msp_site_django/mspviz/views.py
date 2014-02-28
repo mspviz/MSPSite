@@ -10,7 +10,7 @@ navigation_main={
 	'index' : {
 				'id':'index',
 				'title':'About', 
-				'desc': 'Your vote, your msp...',
+				'desc': "Your vote, your msp. Find out what's going on at Holyrood...",
 	}, 
 	'listmsps' : {
 				'id':'listmsps',
@@ -35,7 +35,7 @@ context_dict={
 	'title': "mspviz",
 	'desc': "Your vote, your msp",
 	'copyr': "mspviz 2014",
-	'contact_name': "mspviz team",
+	'contact_name': "mspviz team 2014",
 	'contact_email': "info@mspviz.co.uk",
 	'navigation_main': navigation_main,
 }

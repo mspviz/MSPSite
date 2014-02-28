@@ -22,5 +22,6 @@ Using HTML5 Boilerplate (http://html5boilerplate.com/) with:
  - Twitter Bootstrap
  - Modernizr
  - Respond.js
+ - jQuery
  
  D3 (http://d3js.org/) for data visualisation
