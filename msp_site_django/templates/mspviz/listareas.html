@@ -7,6 +7,7 @@
 
 	#map-scotland path{
 		fill: #bbb;
+		stroke: #fff;
 	}
 	#map-scotland path:hover{
 		cursor:pointer;
@@ -19,7 +20,10 @@
 
 {% block content %}
 
-	<div id="mapcontainer" style="float:right;"></div>
+	<div id="mapcontainer" style="float:right;">
+	
+	
+	</div>
 
 	{% if districts %}
 		<ul>
@@ -34,7 +38,7 @@
 	
 	<script type="text/javascript">
 	<!--
-	var fileuri = '{% static 'data/geo/osod_sco_outline.geojson' %}';
+	var fileuri = '{% static 'data/geo/scotconstmin.geojson' %}';
 	
 	var width = 900;
     var height = width;
@@ -55,13 +59,15 @@
     	.projection(projection);
 	
 	d3.json(fileuri, function(error, scot) {
-		  svg.append("path")
-		      .datum(scot)
+		  svg.selectAll("path")
+		  	.data(scot['features'])
+		  	.enter().append("path")
+		      .attr("title", function(d){ return d.properties.NAME;})
 		      .attr("d", path);
 	});
 	
 	
 	//-->
 	</script>
-	
+	<p>Contains public sector information licensed under the Open Government Licence v2.0.</p>
 {% endblock %}
