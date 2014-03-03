@@ -55,9 +55,10 @@ def listmsps(request):
 	context_dict['all_msps'] = all_msps
 	for msp in context_dict['all_msps']:
 		votequery = Vote.objects.filter(msp = msp.id)
-		msp.votecount = votequery.count()
-		msp.votecountyes = votequery.filter(vote=Vote.YES).count()
-		msp.votecountno = votequery.filter(vote=Vote.NO).count()
+		msp.votes = {'yes': votequery.filter(vote=Vote.YES).count(), 
+					'no': votequery.filter(vote=Vote.NO).count(), 
+					'abstain': votequery.filter(vote=Vote.ABSTAIN).count(), 
+					'total': votequery.count()}
 	return render_to_response('mspviz/listmsps.html', context_dict, context)
 
 

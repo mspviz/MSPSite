@@ -125,5 +125,6 @@ if __name__ == '__main__':
 	# read json files
 	populateMSPs()
 	# populate votes takes a long time since sqllite can only do 12 transactions per sec - combining inserts into one transaction is difficult because the many-to-many realationship and dublicate entries.
+	# perfomance could be improved via preprocessing the json or switching to mysql database
 	populateVotes() 
     
