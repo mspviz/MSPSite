@@ -2,11 +2,11 @@
 
 {% block content %}
 	{% if party %}
-		{{party.partyName}}
+		{{party.name}}
 		{% if partyMSPs %}
 			<ul>
 			{% for msp in partyMSPs %}
-				<li><a href="/mspviz/msp/{{msp.mspID}}">{{msp.mspName}}</a></li>
+				<li><a href="/mspviz/msp/{{msp.foreignid}}">{{msp.firstname}} {{msp.lastname}}</a></li>
 			{% endfor %}
 			</ul>
 		{% endif %}

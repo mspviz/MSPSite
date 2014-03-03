@@ -55,3 +55,11 @@ a:hover {
 hr {
 	border-color:#C9B5E2;
 }
+
+tr:hover {
+	background-color:#efefef;
+}
+
+td, th {
+	padding:2px 12px;
+}

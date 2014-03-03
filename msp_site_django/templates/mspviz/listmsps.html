@@ -2,13 +2,18 @@
 
 {% block content %}
 	{% if all_msps %}
-		<ul>
+		<table style="width:100%;">
+			<tr> <th>Name</th> <th>Party</th> <th>District</th> <th>Votes:</th> <th>Yes</th> <th>No</th></tr>
 			{% for msp in all_msps %}
-				<li>
-					<a href="/mspviz/msp/{{msp.mspID}}">{{msp.mspName}}</a>, {{msp.mspID}}, 
-					<a href="/mspviz/party/{{msp.mspParty.id}}">{{msp.mspParty.partyName}}</a>
-				</li>
+				<tr>
+					<td><a href="/mspviz/msp/{{msp.foreignid}}">{{msp.firstname}} {{msp.lastname}}</a> ({{msp.foreignid}}) </td>
+					<td><a href="/mspviz/party/{{msp.party.id}}">{{msp.party.name}}</a></td>
+					<td><a href="/mspviz/party/{{msp.district.id}}">{{msp.district.name}}</a></td>
+					<td>Total: {{msp.votecount}}</td>
+					<td>Yes:{{msp.votecountyes}}</td>
+					<td>No: {{msp.votecountno}}</td>
+				</tr>
 			{% endfor %}
-		</ul>
+		</table>
 	{% endif %}
 {% endblock %}

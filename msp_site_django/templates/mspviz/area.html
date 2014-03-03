@@ -6,7 +6,7 @@
 		{% if districtMSPs %}
 			<ul>
 			{% for msp in districtMSPs %}
-				<li><a href="/mspviz/msp/{{msp.mspID}}">{{msp.mspName}}</a>, {{msp.mspParty.partyName}}</li>
+				<li><a href="/mspviz/msp/{{msp.foreignid}}">{{msp.firstname}} {{msp.lastname}}</a>, {{msp.party.name}}</li>
 			{% endfor %}
 			</ul>
 		{% endif %}

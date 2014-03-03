@@ -2,8 +2,9 @@
 
 {% block content %}
 	{% if msp %}
-		{{msp.mspName}}, <a href="/mspviz/party/{{msp.mspParty.id}}">{{msp.mspParty.partyName}}</a>, <a href="/mspviz/area/{{msp.mspDistrict.id}}">{{msp.mspDistrict.districtName}}</a>
-		<img src="{{ msp.mspImg }}">
+		<img src="{{ msp.image }}">
+		{{msp.firstname}} {{msp.lastname}}, <a href="/mspviz/party/{{msp.party.id}}">{{msp.party.name}}</a>, <a href="/mspviz/area/{{msp.district.id}}">{{msp.district.name}}</a>
+		{{msp.votecount}}
 	{% endif %}
 	<a href="/mspviz/listmsps">Back to all msps</a>
 {% endblock %}

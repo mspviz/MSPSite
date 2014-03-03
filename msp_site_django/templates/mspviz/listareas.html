@@ -29,7 +29,14 @@
 		<ul>
 			{% for district in districts %}
 				<li>
-					<a href="/mspviz/area/{{district.id}}">{{district.districtName}}</a>
+					<a href="/mspviz/area/{{district.id}}">{{district.name}}</a>
+				
+					<ul>
+						{% for constituency in district.constituencies %}
+							<li><a href="/mspviz/area/{{constituency.id}}">{{constituency.name}}</a></li>
+						{% endfor %}
+					</ul>
+					
 				</li>
 			{% endfor %}
 		</ul>
@@ -39,9 +46,9 @@
 	<script type="text/javascript">	
 	
 	<!--
-	var fileuri = '{% static 'data/geo/scotconstmin.geojson' %}';
+	var fileuri = '{% static 'data/geo/scotland_constituencies.geojson' %}';
 	
-	var width = 900;
+	var width = 800;
     var height = Math.round(width*1.1);
 
 	var svg = d3.select("#mapcontainer").append("svg")
