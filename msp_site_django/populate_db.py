@@ -6,8 +6,14 @@ from django.core import management
 from StringIO import StringIO 
 import re
 import hashlib
+import mysql
 
 from mspviz import models
+
+
+def createDatabase():
+	''' create mysql database '''
+	print mysql.__path__
 
 
 
@@ -120,11 +126,13 @@ def add_vote(inputmsp, inputdiv, inputvote):
 
 if __name__ == '__main__':
 	# clear database and delete everything
-	clearDatabase()
+	#clearDatabase()
 	
 	# read json files
-	populateMSPs()
+	#populateMSPs()
 	# populate votes takes a long time since sqllite can only do 12 transactions per sec - combining inserts into one transaction is difficult because the many-to-many realationship and dublicate entries.
 	# perfomance could be improved via preprocessing the json or switching to mysql database
-	populateVotes() 
+	#populateVotes() 
+	
+	createDatabase()
     

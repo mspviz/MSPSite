@@ -5,14 +5,39 @@
 {% block addstyles %}
 <style type="text/css">
 
-	#map-scotland path{
-		fill: #bbb;
-		stroke: #fff;
+	#map-scotland path.region{
+		stroke: rgba(100, 100, 100, 0.8);
+		stroke-width:1px;
 	}
-	#map-scotland path:hover{
+	#map-scotland path.const{
+		fill: rgba(200, 200, 200, 0.1);
+		stroke: rgba(100, 100, 100, 0.2);
+		stroke-width:1px;
+	}
+	#map-scotland path.const:hover, #map-scotland path.active{
 		cursor:pointer;
 		fill: #59B459;
 	}
+	
+	
+	ul#legendcontainer{
+		margin:5px;
+	}
+	
+	ul#legendcontainer ul{
+		font-size:0.78em;
+		margin:0;
+		padding:0;
+	}
+	
+	li.district{
+		display:block;
+		float:left;
+		margin:5px;
+		width:180px;
+		height:180px;
+	}
+	
 	
 </style>
 {% endblock %}
@@ -20,20 +45,17 @@
 
 {% block content %}
 
-	<div id="mapcontainer" style="float:right;">
-	
-	
-	</div>
+	<div id="mapcontainer" style="float:right;"></div>
 
 	{% if districts %}
-		<ul>
+		<ul id="legendcontainer">
 			{% for district in districts %}
-				<li>
-					<a href="/mspviz/area/{{district.id}}">{{district.name}}</a>
+				<li class="district">
+					<a href="/mspviz/area/{{district.id}}" onmouseover="javascript:togglearea('{{district.name}}', true);" onmouseout="javascript:togglearea('{{district.name}}', false);">{{district.name}}</a>
 				
 					<ul>
 						{% for constituency in district.constituencies %}
-							<li><a href="/mspviz/area/{{constituency.id}}">{{constituency.name}}</a></li>
+							<li><a href="/mspviz/area/{{constituency.id}}" onmouseover="javascript:togglearea('{{constituency.name}}', true);" onmouseout="javascript:togglearea('{{constituency.name}}', false);">{{constituency.name}}</a></li>
 						{% endfor %}
 					</ul>
 					
@@ -42,14 +64,24 @@
 		</ul>
 	{% endif %}
 	
+	<div style="clear:both;">&nbsp;</div>
 	
 	<script type="text/javascript">	
 	
 	<!--
-	var fileuri = '{% static 'data/geo/scotland_constituencies.geojson' %}';
 	
-	var width = 800;
-    var height = Math.round(width*1.1);
+	
+	var togglearea = function(name, show){
+		
+		var elem = svg.select("path." + name.replace(/ /g, "").replace(",", "").toLowerCase());
+		if(elem){
+			elem.classed("active", show);
+		}
+	}
+	
+	
+	var width = 480;
+    var height = Math.round(width*1.6);
 
 	var svg = d3.select("#mapcontainer").append("svg")
 		.attr("id", 'map-scotland')
@@ -58,22 +90,36 @@
 	
 	var projection = d3.geo.albers()
 	    .center([0, 57.7])
-	    .rotate([4, 0])
+	    .rotate([4.5, 0])
 	    .parallels([50, 60])
-	    .scale(width*10)
+	    .scale(width*14)
 	    .translate([width / 2, height / 2]);
 	
 	var path = d3.geo.path()
     	.projection(projection);
 	
-	d3.json(fileuri, function(error, scot) {
-		  svg.selectAll("path")
-		  	.data(scot['features'])
+	var fileuri = '{% static 'data/geo/scotland_regions.geojson' %}';
+	d3.json(fileuri, function(error, scotregion) {
+		  svg.append("g").selectAll("path.region")
+		  	.data(scotregion['features'])
 		  	.enter().append("path")
 		      .attr("title", function(d){ return d.properties.NAME;})
-		      .attr("class", function(d){ return d.properties.NAME;})
+		      .attr("class", function(d){ return d.properties.NAME.replace(/ /g, "").replace(",", "").toLowerCase() + ' region';})
+		      .attr("fill", function(d, i){return 'rgba('+ (i*50) % 255+', '+ (i*200) % 255+','+ (i*600) % 255+', 0.15)';})
 		      .attr("d", path);
 	});
+	
+	var fileuri = '{% static 'data/geo/scotland_constituencies.geojson' %}';
+	d3.json(fileuri, function(error, scotconst) {
+		  svg.append("g").selectAll("path.const")
+		  	.data(scotconst['features'])
+		  	.enter().append("path")
+		      .attr("title", function(d){ return d.properties.NAME;})
+		      .attr("class", function(d){ return d.properties.NAME.replace(/ /g, "").replace(",", "").toLowerCase() + ' const';})
+		      .attr("d", path);
+	});
+	
+	
 	
 	
 	//-->
